@@ -8,7 +8,7 @@
     "start": "nest start",
     "dev": "nest start --watch",
     "debug": "nest start --debug --watch",
-    "lint": "cd ../.. && node ./node_modules/.bin/eslint \"packages/api/{src,apps,libs,test}/**/*.ts\"",
+        "lint": "eslint . --ext .ts,.tsx",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage"

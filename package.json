@@ -11,7 +11,7 @@
   "scripts": {
     "build": "npm run build --workspaces --if-present",
     "dev": "npm run dev --workspaces --if-present",
-    "lint": "node node_modules/.bin/eslint \"packages/api/{src,apps,libs,test}/**/*.ts\" \"packages/web/app/**/*.{ts,tsx}\"",
+    "lint": "eslint . --ext .ts,.tsx",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "test": "npm run test --workspaces --if-present",
     "prepare": "echo no-op"
