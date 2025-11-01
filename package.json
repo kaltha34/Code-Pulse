@@ -11,7 +11,6 @@
   "scripts": {
     "build": "npm run build --workspaces --if-present",
     "dev": "npm run dev --workspaces --if-present",
-    "lint": "eslint . --ext .ts,.tsx",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "test": "npm run test --workspaces --if-present",
     "prepare": "echo no-op"
@@ -19,13 +18,6 @@
   "devDependencies": {
     "@commitlint/cli": "^18.0.0",
     "@commitlint/config-conventional": "^18.0.0",
-    "@typescript-eslint/eslint-plugin": "^6.9.0",
-    "@typescript-eslint/parser": "^6.9.0",
-    "@next/eslint-plugin-next": "^14.0.0",
-    "eslint": "^8.56.0",
-    "eslint-config-next": "^14.0.0",
-    "eslint-plugin-react": "^7.33.0",
-    "eslint-plugin-react-hooks": "^4.6.0",
     "prettier": "^3.0.0",
     "typescript": "~5.3.3"
   },
