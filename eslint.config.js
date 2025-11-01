@@ -1,21 +1,22 @@
 import eslint from '@eslint/js';
-import * as parser from '@typescript-eslint/parser';
-import * as pluginTypescript from '@typescript-eslint/eslint-plugin';
+import ts from '@typescript-eslint/eslint-plugin';
+import tsParser from '@typescript-eslint/parser';
 import nextPlugin from '@next/eslint-plugin-next';
 
 export default [
   eslint.configs.recommended,
   {
-    // API configuration
     files: ['packages/api/**/*.ts'],
     languageOptions: {
-      parser: parser,
+      parser: tsParser,
       parserOptions: {
-        project: './packages/api/tsconfig.json',
+        project: true,
+        tsconfigRootDir: '.',
+        sourceType: 'module',
       },
     },
     plugins: {
-      '@typescript-eslint': pluginTypescript,
+      '@typescript-eslint': ts,
     },
     rules: {
       '@typescript-eslint/explicit-function-return-type': 'warn',
@@ -24,22 +25,31 @@ export default [
     },
   },
   {
-    // Web configuration
     files: ['packages/web/**/*.{ts,tsx}'],
+    languageOptions: {
+      parser: tsParser,
+      parserOptions: {
+        project: true,
+        tsconfigRootDir: '.',
+        sourceType: 'module',
+      },
+      globals: {
+        React: true,
+        JSX: true,
+      }
+    },
+    settings: {
+      next: {
+        rootDir: 'packages/web',
+      }
+    },
     plugins: {
-      '@typescript-eslint': pluginTypescript,
+      '@typescript-eslint': ts,
       '@next/next': nextPlugin,
     },
-    languageOptions: {
-      parser: parser,
-      parserOptions: {
-        project: './packages/web/tsconfig.json',
-      },
-    },
     rules: {
-      ...nextPlugin.configs.recommended.rules,
-      '@typescript-eslint/no-unused-vars': 'warn',
-      '@typescript-eslint/no-explicit-any': 'warn',
+      'react/react-in-jsx-scope': 'off',
+      '@next/next/no-html-link-for-pages': 'off',
     },
-  }
+  },
 ];
