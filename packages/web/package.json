@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "cd ../.. && eslint \"packages/web/app/**/*.{ts,tsx}\""
+    "lint": "cd ../.. && node ./node_modules/.bin/eslint \"packages/web/app/**/*.{ts,tsx}\""
   },
   "dependencies": {
     "@tanstack/react-query": "^4.0.0",
