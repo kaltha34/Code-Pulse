@@ -1,18 +1,21 @@
 import eslint from '@eslint/js';
-import tseslint from 'typescript-eslint';
+import * as parser from '@typescript-eslint/parser';
+import * as pluginTypescript from '@typescript-eslint/eslint-plugin';
 import nextPlugin from '@next/eslint-plugin-next';
 
-export default tseslint.config(
+export default [
   eslint.configs.recommended,
-  ...tseslint.configs.recommended,
   {
     // API configuration
     files: ['packages/api/**/*.ts'],
     languageOptions: {
-      parser: tseslint.parser,
+      parser: parser,
       parserOptions: {
-        project: ['./packages/api/tsconfig.json'],
+        project: './packages/api/tsconfig.json',
       },
+    },
+    plugins: {
+      '@typescript-eslint': pluginTypescript,
     },
     rules: {
       '@typescript-eslint/explicit-function-return-type': 'warn',
@@ -24,12 +27,13 @@ export default tseslint.config(
     // Web configuration
     files: ['packages/web/**/*.{ts,tsx}'],
     plugins: {
-      '@next/next': nextPlugin
+      '@typescript-eslint': pluginTypescript,
+      '@next/next': nextPlugin,
     },
     languageOptions: {
-      parser: tseslint.parser,
+      parser: parser,
       parserOptions: {
-        project: ['./packages/web/tsconfig.json'],
+        project: './packages/web/tsconfig.json',
       },
     },
     rules: {
@@ -38,4 +42,4 @@ export default tseslint.config(
       '@typescript-eslint/no-explicit-any': 'warn',
     },
   }
-);
+];
